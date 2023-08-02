@@ -2,7 +2,7 @@ package de.proxysystem;
 
 import de.proxysystem.commands.HubCommand;
 import de.proxysystem.commands.PingCommand;
-import de.proxysystem.commands.TeamChatCommand;
+import de.proxysystem.commands.staff.TeamChatCommand;
 import de.proxysystem.config.BasicFileConfiguration;
 import de.proxysystem.config.MessageConfiguration;
 import de.proxysystem.config.enums.GeneralConfig;
