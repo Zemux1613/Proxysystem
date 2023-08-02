@@ -32,7 +32,8 @@ public enum Messages {
     WHERE_AM_I("commands.whereami", "%prefix% Du bist auf &e%server%&8!"),
     CLEAR_CHAT_USAGE("commands.clearchat.usage", "%prefix% Bitte verwende /clearchat"),
     CLEAR_CHAT_SUCCESS("commands.clearchat.usage", "%prefix% Der Chat wurde geleert&8."),
-    PROXY("commands.proxy", "%prefix% Du bist momentan auf folgender Proxy:&c %address%&8.");
+    PROXY("commands.proxy", "%prefix% Du bist momentan auf folgender Proxy:&c %address%&8."),
+    JOIN("commands.join", "%prefix% Bitte Verwende /join <ServerName>");
 
     private final String key;
     private final String defaultValue;
