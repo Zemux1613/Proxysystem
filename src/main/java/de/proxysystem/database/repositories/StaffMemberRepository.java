@@ -69,4 +69,13 @@ public class StaffMemberRepository {
         "INSERT INTO staffMembers (uuid, teamChatState) VALUES (?,?) ON DUPLICATE KEY UPDATE teamChatState=?",
         uuid.toString(), (teamChatState ? 1 : 0), (teamChatState ? 1 : 0));
   }
+
+  public void deleteStaffMember(UUID uuid) {
+    final StaffMember staffMember = getStaffMember(uuid);
+    if (staffMember == null) {
+      return;
+    }
+    this.staffMembers.remove(staffMember);
+    sqlConnector.update("DELETE FROM staffMembers WHERE uuid=?", uuid.toString());
+  }
 }

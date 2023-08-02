@@ -30,6 +30,11 @@ public class PlayerJoinListener implements Listener {
     }
 
     if (staffMember != null) {
+      if (!event.getPlayer().hasPermission("proxysystem.staffMember")) {
+        ProxySystem.getInstance().getStaffMemberRepository()
+            .deleteStaffMember(staffMember.getUuid());
+        return;
+      }
       event.getPlayer().sendMessage(TextComponent.fromLegacyText(
           ProxySystem.getInstance().getMessageConfiguration()
               .getMessage(Messages.TEAM_CHAT_JOIN_MESSAGE)
