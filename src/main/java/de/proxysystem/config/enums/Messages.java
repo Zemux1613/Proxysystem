@@ -22,7 +22,8 @@ public enum Messages {
     TEAM_CHAT_LOGOUT_SUCCESS("commands.teamChat.logout.success", "%prefix% Du hast dich im Teamchat ausgeloggt&8."),
     TEAM_CHAT_LOGIN_FAIL("commands.teamChat.login.fail", "%prefix% Du bist bereits im Teamchat eingeloggt&8."),
     TEAM_CHAT_LOGOUT_FAIL("commands.teamChat.logout.fail", "%prefix% Du bist bereits im Teamchat ausgeloggt&8."),
-    TEAM_CHAT_FORMAT("commands.teamChat.chatFormat", "%name%&8: &7%message%")
+    TEAM_CHAT_FORMAT("commands.teamChat.chatFormat", "%name%&8: &7%message%"),
+    TEAM_CHAT_JOIN_MESSAGE("commands.teamChat.joinMessage", "&8[&bTeamChat&8] &7Status&8: %status%")
     ;
 
     private final String key;
