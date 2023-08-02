@@ -2,6 +2,7 @@ package de.proxysystem.commands;
 
 import de.proxysystem.ProxySystem;
 import de.proxysystem.config.enums.Messages;
+import de.proxysystem.database.modells.StaffMember;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -37,6 +38,45 @@ public class TeamChatCommand extends Command {
                     .replace("%server%", ChatColor.translateAlternateColorCodes('&', server))
                     .replace("%status%", (staffMember.isTeamChatState() ? "§a✓" : "§c✕"))));
           });
+    } else if (args.length == 1) {
+      if (sender instanceof ProxiedPlayer player) {
+        if (args[0].equalsIgnoreCase("login") || args[0].equalsIgnoreCase("logout")) {
+          final StaffMember staffMember = ProxySystem.getInstance().getStaffMemberRepository()
+              .getStaffMember(player.getUniqueId());
+          if (staffMember == null) {
+            return;
+          }
+          if (staffMember.isTeamChatState() && args[0].equalsIgnoreCase("logout")) {
+            sender.sendMessage(TextComponent.fromLegacyText(
+                ProxySystem.getInstance().getMessageConfiguration()
+                    .getMessage(Messages.TEAM_CHAT_LOGOUT_SUCCESS)));
+            ProxySystem.getInstance().getStaffMemberRepository()
+                .updateStaffMember(player.getUniqueId(), false);
+            return;
+          }
+          if (!staffMember.isTeamChatState() && args[0].equalsIgnoreCase("logout")) {
+            sender.sendMessage(TextComponent.fromLegacyText(
+                ProxySystem.getInstance().getMessageConfiguration()
+                    .getMessage(Messages.TEAM_CHAT_LOGOUT_FAIL)));
+            return;
+          }
+          if (staffMember.isTeamChatState() && args[0].equalsIgnoreCase("login")) {
+            sender.sendMessage(TextComponent.fromLegacyText(
+                ProxySystem.getInstance().getMessageConfiguration()
+                    .getMessage(Messages.TEAM_CHAT_LOGIN_FAIL)));
+            return;
+          }
+          if (!staffMember.isTeamChatState() && args[0].equalsIgnoreCase("login")) {
+            sender.sendMessage(TextComponent.fromLegacyText(
+                ProxySystem.getInstance().getMessageConfiguration()
+                    .getMessage(Messages.TEAM_CHAT_LOGIN_SUCCESS)));
+            ProxySystem.getInstance().getStaffMemberRepository()
+                .updateStaffMember(player.getUniqueId(), true);
+            return;
+          }
+          sender.sendMessage();
+        }
+      }
     }
   }
 }

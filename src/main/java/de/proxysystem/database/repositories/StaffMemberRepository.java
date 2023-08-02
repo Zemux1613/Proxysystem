@@ -53,6 +53,17 @@ public class StaffMemberRepository {
     createOrUpdateStaffMember(uuid, true);
   }
 
+  public void updateStaffMember(UUID uuid, boolean teamChatState) {
+    final StaffMember staffMember = getStaffMember(uuid);
+    if (staffMember == null) {
+      createStaffMember(uuid);
+      updateStaffMember(uuid, teamChatState);
+      return;
+    }
+    staffMember.setTeamChatState(teamChatState);
+    createOrUpdateStaffMember(uuid, teamChatState);
+  }
+
   private void createOrUpdateStaffMember(UUID uuid, boolean teamChatState) {
     sqlConnector.update(
         "INSERT INTO staffMembers (uuid,teamChatState) VALUES (?,?) ON DUPLICATED KEY teamChatState=?",

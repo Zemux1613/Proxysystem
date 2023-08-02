@@ -17,8 +17,11 @@ public enum Messages {
     DATABASE_CONNECTION_FAIL("database.connection.fail", "%prefix% Es konnte keine Verbindung zur Datenbank hergestellt werden&8."),
     DATABASE_CONNECTION_DISCONNECT("database.connection.disconnect", "%prefix% Die Verbindung zur Datenbank wurde getrennt&8."),
     TEAM_CHAT_ONLINE("database.connection.disconnect", "%prefix% Aktuell sind folgende Teammitglieder erfasst&8:"),
-    TEAM_CHAT_FORMAT("database.connection.disconnect", "%prefix% %name% &8- &e%server% &8- %status%")
-
+    TEAM_CHAT_FORMAT("database.connection.disconnect", "%prefix% %name% &8- &e%server% &8- %status%"),
+    TEAM_CHAT_LOGIN_SUCCESS("database.connection.disconnect", "%prefix% Du hast dich im Teamchat eingeloggt&8."),
+    TEAM_CHAT_LOGOUT_SUCCESS("database.connection.disconnect", "%prefix% Du hast dich im Teamchat ausgeloggt&8."),
+    TEAM_CHAT_LOGIN_FAIL("database.connection.disconnect", "%prefix% Du bist bereits im Teamchat eingeloggt&8."),
+    TEAM_CHAT_LOGOUT_FAIL("database.connection.disconnect", "%prefix% Du bist bereits im Teamchat ausgeloggt&8.")
     ;
 
     private final String key;
