@@ -26,7 +26,10 @@ public enum Messages {
     TEAM_CHAT_FORMAT("commands.teamChat.chatFormat", "%name%&8: &7%message%"),
     TEAM_CHAT_JOIN_MESSAGE("commands.teamChat.joinMessage", "&8[&bTeamChat&8] &7Status&8: %status%"),
     JUMP_USAGE("commands.jump.usage", "%prefix% Bitte verwende /jump <Name>"),
-    JUMP_SUCCESS("commands.jump.success", "%prefix% Du bist nun bei %name%&8!");
+    JUMP_SUCCESS("commands.jump.success", "%prefix% Du bist nun bei %name%&8!"),
+    PULL_USAGE("commands.pull.usage", "%prefix% Bitte verwende /pull <Name>"),
+    PULL_SUCCESS("commands.pull.success","%prefix% Du bist nun auf %server%&8.")
+    ;
 
     private final String key;
     private final String defaultValue;
