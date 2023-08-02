@@ -1,14 +1,38 @@
 package de.proxysystem.listener;
 
 import de.proxysystem.ProxySystem;
+import de.proxysystem.config.CustomPrefixesConfiguration;
 import de.proxysystem.config.enums.Messages;
 import de.proxysystem.database.modells.StaffMember;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Stream;
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 public class PlayerJoinListener implements Listener {
+
+  @EventHandler
+  public void handlePrefixes(PostLoginEvent event) {
+    final ProxiedPlayer player = event.getPlayer();
+    if (ProxySystem.getInstance().getCustomPrefixesConfiguration() != null) {
+      final ConcurrentHashMap<String, String> prefixes = CustomPrefixesConfiguration.getPrefixes();
+      final String defaultPrefix = ChatColor.translateAlternateColorCodes('&',
+          prefixes.get("none"));
+      player.setDisplayName(defaultPrefix + player.getName());
+      prefixes.keySet().stream().filter(s -> !s.equalsIgnoreCase("none")).forEach(permission -> {
+        if (player.getDisplayName().equals(defaultPrefix + player.getName())
+            && player.hasPermission(permission)) {
+          player.setDisplayName(
+              ChatColor.translateAlternateColorCodes('&', prefixes.get(permission))
+                  + player.getName());
+        }
+      });
+    }
+  }
 
   @EventHandler
   public void handleNameResultUpdates(PostLoginEvent event) {

@@ -13,6 +13,7 @@ public enum GeneralConfig {
     DATABASE_DATABASE("database.database", "myDatabase"),
     DATABASE_PASSWORD("database.password" , "changeMe"),
     DATABASE_USERNAME("database.username", "admin"),
+    DISPLAY_NAME_PREFIXING("general.customPrefixes", "true"),
     GENERAL_ENABLE_HUB_COMMAND("general.hub.enableCustomCommand", "false"),
     GENERAL_HUB_GROUP_NAME("general.hub.serverGroup", "Lobby");
 

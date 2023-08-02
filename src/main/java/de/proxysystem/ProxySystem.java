@@ -6,6 +6,7 @@ import de.proxysystem.commands.staff.JumpCommand;
 import de.proxysystem.commands.staff.PullCommand;
 import de.proxysystem.commands.staff.TeamChatCommand;
 import de.proxysystem.config.BasicFileConfiguration;
+import de.proxysystem.config.CustomPrefixesConfiguration;
 import de.proxysystem.config.MessageConfiguration;
 import de.proxysystem.config.enums.GeneralConfig;
 import de.proxysystem.config.enums.Messages;
@@ -21,20 +22,26 @@ import net.md_5.bungee.api.plugin.Plugin;
 @Getter
 public class ProxySystem extends Plugin {
 
-
   @Getter
   private static ProxySystem instance;
 
   private BasicFileConfiguration basicFileConfiguration;
   private MessageConfiguration messageConfiguration;
+  private CustomPrefixesConfiguration customPrefixesConfiguration;
   private SqlConnector sqlConnector;
   private NameStorageRepository nameStorageRepository;
   private StaffMemberRepository staffMemberRepository;
+
   @Override
   public void onEnable() {
     instance = this;
     basicFileConfiguration = new BasicFileConfiguration();
     messageConfiguration = new MessageConfiguration();
+
+    if (basicFileConfiguration.getSetting(GeneralConfig.DISPLAY_NAME_PREFIXING)
+        .equals(Boolean.TRUE.toString())) {
+      customPrefixesConfiguration = new CustomPrefixesConfiguration();
+    }
 
     sqlConnector = new SqlConnector(basicFileConfiguration);
 
