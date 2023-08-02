@@ -9,6 +9,7 @@ import de.proxysystem.config.enums.GeneralConfig;
 import de.proxysystem.config.enums.Messages;
 import de.proxysystem.database.SqlConnector;
 import de.proxysystem.database.repositories.NameStorageRepository;
+import de.proxysystem.database.repositories.StaffMemberRepository;
 import de.proxysystem.listener.PlayerJoinListener;
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
@@ -26,6 +27,7 @@ public class ProxySystem extends Plugin {
   private MessageConfiguration messageConfiguration;
   private SqlConnector sqlConnector;
   private NameStorageRepository nameStorageRepository;
+  private StaffMemberRepository staffMemberRepository;
   @Override
   public void onEnable() {
     instance = this;
@@ -35,6 +37,7 @@ public class ProxySystem extends Plugin {
     sqlConnector = new SqlConnector(basicFileConfiguration);
 
     nameStorageRepository = new NameStorageRepository(sqlConnector);
+    staffMemberRepository = new StaffMemberRepository(sqlConnector);
 
     ProxyServer.getInstance().getConsole().sendMessage(TextComponent.fromLegacyText(
         messageConfiguration.getMessage(Messages.PREFIX) + "Starting " + getDescription().getName()

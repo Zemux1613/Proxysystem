@@ -17,4 +17,14 @@ public class PlayerJoinListener implements Listener {
     ProxySystem.getInstance().getNameStorageRepository().checkForUsernameUpdate(event.getPlayer());
   }
 
+  @EventHandler
+  public void handleStaffMember(PostLoginEvent event) {
+    if (event.getPlayer().hasPermission("proxysystem.staffMember") &&
+        ProxySystem.getInstance().getStaffMemberRepository()
+            .getStaffMember(event.getPlayer().getUniqueId()) == null) {
+      ProxySystem.getInstance().getStaffMemberRepository()
+          .createStaffMember(event.getPlayer().getUniqueId());
+    }
+  }
+
 }

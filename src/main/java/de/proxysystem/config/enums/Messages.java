@@ -15,7 +15,10 @@ public enum Messages {
     NOT_HUB_FOUND("commands.hub.notHubFound", "%prefix% Es konnte keine Lobby für dich gefunden werden&8."),
     DATABASE_CONNECTION_CONNECTED("database.connection.connected", "%prefix% Es konnte sich erfolgreich zur Datenbank verbunden werden&8."),
     DATABASE_CONNECTION_FAIL("database.connection.fail", "%prefix% Es konnte keine Verbindung zur Datenbank hergestellt werden&8."),
-    DATABASE_CONNECTION_DISCONNECT("database.connection.disconnect", "%prefix% Die Verbindung zur Datenbank wurde getrennt&8.")
+    DATABASE_CONNECTION_DISCONNECT("database.connection.disconnect", "%prefix% Die Verbindung zur Datenbank wurde getrennt&8."),
+    TEAM_CHAT_ONLINE("database.connection.disconnect", "%prefix% Aktuell sind folgende Teammitglieder erfasst&8:"),
+    TEAM_CHAT_FORMAT("database.connection.disconnect", "%prefix% %name% &8- &e%server% &8- %status%")
+
     ;
 
     private final String key;
