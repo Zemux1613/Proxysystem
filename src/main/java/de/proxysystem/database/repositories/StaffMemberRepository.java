@@ -21,7 +21,7 @@ public class StaffMemberRepository {
   }
 
   private void createTable() {
-    sqlConnector.update("CREATE TABLE IF NOT EXISTS staffMembers(uuid VARCHAR(64) NOT NULL,"
+    sqlConnector.update("CREATE TABLE IF NOT EXISTS staffMembers(uuid VARCHAR(64) PRIMARY KEY,"
         + "teamChatState INT NOT NULL DEFAULT 1, FOREIGN KEY (uuid) REFERENCES nameStorage(uuid))");
   }
 
