@@ -2,10 +2,12 @@ package de.proxysystem;
 
 import de.proxysystem.commands.HubCommand;
 import de.proxysystem.commands.PingCommand;
+import de.proxysystem.commands.TeamChatCommand;
 import de.proxysystem.config.BasicFileConfiguration;
 import de.proxysystem.config.MessageConfiguration;
 import de.proxysystem.config.enums.GeneralConfig;
 import de.proxysystem.config.enums.Messages;
+import de.proxysystem.database.SqlConnector;
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -14,17 +16,21 @@ import net.md_5.bungee.api.plugin.Plugin;
 @Getter
 public class ProxySystem extends Plugin {
 
+
   @Getter
   private static ProxySystem instance;
 
   private BasicFileConfiguration basicFileConfiguration;
   private MessageConfiguration messageConfiguration;
+  private SqlConnector sqlConnector;
 
   @Override
   public void onEnable() {
     instance = this;
     basicFileConfiguration = new BasicFileConfiguration();
     messageConfiguration = new MessageConfiguration();
+
+    sqlConnector = new SqlConnector(basicFileConfiguration);
 
     ProxyServer.getInstance().getConsole().sendMessage(TextComponent.fromLegacyText(
         messageConfiguration.getMessage(Messages.PREFIX) + "Starting " + getDescription().getName()
@@ -36,11 +42,12 @@ public class ProxySystem extends Plugin {
         .equalsIgnoreCase(Boolean.TRUE.toString())) {
       ProxyServer.getInstance().getPluginManager().registerCommand(this, new HubCommand());
     }
+    ProxyServer.getInstance().getPluginManager().registerCommand(this, new TeamChatCommand());
   }
 
   @Override
   public void onDisable() {
-    super.onDisable();
+    sqlConnector.disconnect();
   }
 }
 
