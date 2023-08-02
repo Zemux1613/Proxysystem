@@ -8,6 +8,8 @@ import de.proxysystem.config.MessageConfiguration;
 import de.proxysystem.config.enums.GeneralConfig;
 import de.proxysystem.config.enums.Messages;
 import de.proxysystem.database.SqlConnector;
+import de.proxysystem.database.repositories.NameStorageRepository;
+import de.proxysystem.listener.PlayerJoinListener;
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -23,7 +25,7 @@ public class ProxySystem extends Plugin {
   private BasicFileConfiguration basicFileConfiguration;
   private MessageConfiguration messageConfiguration;
   private SqlConnector sqlConnector;
-
+  private NameStorageRepository nameStorageRepository;
   @Override
   public void onEnable() {
     instance = this;
@@ -31,6 +33,8 @@ public class ProxySystem extends Plugin {
     messageConfiguration = new MessageConfiguration();
 
     sqlConnector = new SqlConnector(basicFileConfiguration);
+
+    nameStorageRepository = new NameStorageRepository(sqlConnector);
 
     ProxyServer.getInstance().getConsole().sendMessage(TextComponent.fromLegacyText(
         messageConfiguration.getMessage(Messages.PREFIX) + "Starting " + getDescription().getName()
@@ -43,6 +47,9 @@ public class ProxySystem extends Plugin {
       ProxyServer.getInstance().getPluginManager().registerCommand(this, new HubCommand());
     }
     ProxyServer.getInstance().getPluginManager().registerCommand(this, new TeamChatCommand());
+
+    // register Listeners
+    ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerJoinListener());
   }
 
   @Override
