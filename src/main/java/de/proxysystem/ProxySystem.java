@@ -2,6 +2,7 @@ package de.proxysystem;
 
 import de.proxysystem.commands.HubCommand;
 import de.proxysystem.commands.PingCommand;
+import de.proxysystem.commands.staff.JumpCommand;
 import de.proxysystem.commands.staff.TeamChatCommand;
 import de.proxysystem.config.BasicFileConfiguration;
 import de.proxysystem.config.MessageConfiguration;
@@ -50,6 +51,7 @@ public class ProxySystem extends Plugin {
       ProxyServer.getInstance().getPluginManager().registerCommand(this, new HubCommand());
     }
     ProxyServer.getInstance().getPluginManager().registerCommand(this, new TeamChatCommand());
+    ProxyServer.getInstance().getPluginManager().registerCommand(this, new JumpCommand());
 
     // register Listeners
     ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerJoinListener());
