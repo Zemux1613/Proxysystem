@@ -27,8 +27,9 @@ import net.md_5.bungee.api.plugin.Plugin;
 public class ProxySystem extends Plugin {
 
   @Getter
+  private static final Long systemStart = System.currentTimeMillis();
+  @Getter
   private static ProxySystem instance;
-
   private BasicFileConfiguration basicFileConfiguration;
   private MessageConfiguration messageConfiguration;
   private CustomPrefixesConfiguration customPrefixesConfiguration;

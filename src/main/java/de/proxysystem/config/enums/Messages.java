@@ -33,7 +33,9 @@ public enum Messages {
     CLEAR_CHAT_USAGE("commands.clearchat.usage", "%prefix% Bitte verwende /clearchat"),
     CLEAR_CHAT_SUCCESS("commands.clearchat.usage", "%prefix% Der Chat wurde geleert&8."),
     PROXY("commands.proxy", "%prefix% Du bist momentan auf folgender Proxy:&c %address%&8."),
-    JOIN("commands.join", "%prefix% Bitte Verwende /join <ServerName>");
+    JOIN("commands.join", "%prefix% Bitte Verwende /join <ServerName>"),
+    UPTIME_USAGE("commands.uptime", "%prefix% Bitte verwende /uptime"),
+    UPTIME("commands.uptime", "%prefix% Das System ist seit %time% online&8.");
 
     private final String key;
     private final String defaultValue;
