@@ -10,27 +10,28 @@ import java.io.File;
 
 @Getter
 public abstract class AbstractConfiguration {
-    private final File file;
-    private final net.md_5.bungee.config.Configuration configuration;
 
-    @SneakyThrows
-    public AbstractConfiguration(final File file) {
-        this.file = file;
-        if (!file.getParentFile().exists()) {
-            file.getParentFile().mkdir();
-        }
-        if(!file.exists()){
-            file.createNewFile();
-        }
-        this.configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(file);
-        init();
+  private final File file;
+  private final net.md_5.bungee.config.Configuration configuration;
+
+  @SneakyThrows
+  public AbstractConfiguration(final File file) {
+    this.file = file;
+    if (!file.getParentFile().exists()) {
+      file.getParentFile().mkdir();
     }
-
-    abstract void init();
-
-    protected void initValue(Configuration configuration, String key, String defaultValue) {
-        if (configuration.get(key) == null) {
-            configuration.set(key, defaultValue);
-        }
+    if (!file.exists()) {
+      file.createNewFile();
     }
+    this.configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(file);
+    init();
+  }
+
+  abstract void init();
+
+  protected void initValue(Configuration configuration, String key, String defaultValue) {
+    if (configuration.get(key) == null) {
+      configuration.set(key, defaultValue);
+    }
+  }
 }

@@ -1,4 +1,4 @@
 name: ProxySystem
 author: Zemux1613
 main: de.proxysystem.ProxySystem
-version: ${project.version}
+version: 0.1.0
