@@ -1,5 +1,8 @@
 # Proxysystem
 
+## Feature requests or bug reports
+> Discord: toml1613
+
 ## Commands
 - /proxy - proxysystem.proxy
 - /clearchat - proxysystem.clearchat
