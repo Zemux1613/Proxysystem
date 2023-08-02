@@ -21,7 +21,7 @@ public class StaffMemberRepository {
   }
 
   private void createTable() {
-    sqlConnector.update("CREATE TABLE IF NOT EXISTS staffMembers(UUID VARCHAR(64) NOT NULL,"
+    sqlConnector.update("CREATE TABLE IF NOT EXISTS staffMembers(uuid VARCHAR(64) NOT NULL,"
         + "teamChatState INT NOT NULL DEFAULT 1, FOREIGN KEY (uuid) REFERENCES nameStorage(uuid))");
   }
 
@@ -66,7 +66,7 @@ public class StaffMemberRepository {
 
   private void createOrUpdateStaffMember(UUID uuid, boolean teamChatState) {
     sqlConnector.update(
-        "INSERT INTO staffMembers (uuid,teamChatState) VALUES (?,?) ON DUPLICATED KEY teamChatState=?",
-        uuid.toString(), (teamChatState ? 1 : 0), teamChatState ? 1 : 0);
+        "INSERT INTO staffMembers (uuid, teamChatState) VALUES (?,?) ON DUPLICATE KEY UPDATE teamChatState=?",
+        uuid.toString(), (teamChatState ? 1 : 0), (teamChatState ? 1 : 0));
   }
 }

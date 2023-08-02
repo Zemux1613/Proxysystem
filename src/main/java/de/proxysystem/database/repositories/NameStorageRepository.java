@@ -29,8 +29,8 @@ public class NameStorageRepository {
     sqlConnector.query(resultSet -> {
       try {
         while (resultSet.next()) {
-          this.nameResults.add(new NameResult(UUID.fromString(resultSet.getString("uuid")),
-              resultSet.getString("name")));
+          this.nameResults.add(new NameResult(UUID.fromString(resultSet.getString("UUID")),
+              resultSet.getString("Username")));
         }
       } catch (SQLException e) {
         throw new RuntimeException(e);
@@ -68,7 +68,7 @@ public class NameStorageRepository {
 
   public void createOrUpdateNameResult(UUID uuid, String username) {
     this.sqlConnector.update(
-        "INSERT INTO nameStorage(uuid,username) VALUES (?,?) ON DUPLICATED KEY username=?",
+        "INSERT INTO nameStorage(UUID, Username) VALUES (?,?) ON DUPLICATE KEY UPDATE Username=?",
         uuid.toString(), username, username);
   }
 

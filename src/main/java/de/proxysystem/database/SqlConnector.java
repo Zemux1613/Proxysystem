@@ -30,7 +30,7 @@ public class SqlConnector {
     if (connection == null) {
       try {
         connection = DriverManager.getConnection(
-            "jdbc::mysql/" + basicFileConfiguration.getSetting(GeneralConfig.DATABASE_HOST) + ":"
+            "jdbc:mysql://" + basicFileConfiguration.getSetting(GeneralConfig.DATABASE_HOST) + ":"
                 + basicFileConfiguration.getSetting(GeneralConfig.DATABASE_PORT) + "/"
                 + basicFileConfiguration.getSetting(GeneralConfig.DATABASE_DATABASE)
                 + "?autoReconnect=true",

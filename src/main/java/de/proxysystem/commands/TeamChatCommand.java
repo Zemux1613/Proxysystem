@@ -3,6 +3,7 @@ package de.proxysystem.commands;
 import de.proxysystem.ProxySystem;
 import de.proxysystem.config.enums.Messages;
 import de.proxysystem.database.modells.StaffMember;
+import java.util.StringJoiner;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -18,6 +19,11 @@ public class TeamChatCommand extends Command {
 
   @Override
   public void execute(CommandSender sender, String[] args) {
+    if (!sender.hasPermission("proxysystem.teamchat")) {
+      sender.sendMessage(TextComponent.fromLegacyText(
+          ProxySystem.getInstance().getMessageConfiguration().getMessage(Messages.NO_PERMISSION)));
+      return;
+    }
     if (args.length == 0) {
       sender.sendMessage(TextComponent.fromLegacyText(
           ProxySystem.getInstance().getMessageConfiguration()
@@ -31,7 +37,7 @@ public class TeamChatCommand extends Command {
             }
             sender.sendMessage(TextComponent.fromLegacyText(
                 ProxySystem.getInstance().getMessageConfiguration()
-                    .getMessage(Messages.TEAM_CHAT_FORMAT).replace("%name%",
+                    .getMessage(Messages.TEAM_CHAT_ONLINE_FORMAT).replace("%name%",
                         (player != null ? player.getDisplayName()
                             : ProxySystem.getInstance().getNameStorageRepository()
                                 .getNameResultByUUID(staffMember.getUuid()).orElseThrow().username()))
@@ -72,11 +78,33 @@ public class TeamChatCommand extends Command {
                     .getMessage(Messages.TEAM_CHAT_LOGIN_SUCCESS)));
             ProxySystem.getInstance().getStaffMemberRepository()
                 .updateStaffMember(player.getUniqueId(), true);
-            return;
           }
-          sender.sendMessage();
+        } else {
+          sendMessage(args[0], sender);
         }
+      } else {
+        sendMessage(args[0], sender);
       }
+    } else {
+      StringJoiner messageJoiner = new StringJoiner(" ");
+      for (String arg : args) {
+        messageJoiner.add(arg);
+      }
+      sendMessage(messageJoiner.toString(), sender);
     }
+  }
+
+  public void sendMessage(String message, CommandSender from) {
+    ProxySystem.getInstance().getStaffMemberRepository().getStaffMembers().forEach(staffMember -> {
+      ProxiedPlayer player = ProxyServer.getInstance().getPlayer(staffMember.getUuid());
+      if (player != null && staffMember.isTeamChatState()) {
+        player.sendMessage(TextComponent.fromLegacyText(
+            ProxySystem.getInstance().getMessageConfiguration()
+                .getMessage(Messages.TEAM_CHAT_FORMAT).replace("%message%", message)
+                .replace("%name%",
+                    (from instanceof ProxiedPlayer ? ((ProxiedPlayer) from).getDisplayName()
+                        : "§4Console"))));
+      }
+    });
   }
 }
