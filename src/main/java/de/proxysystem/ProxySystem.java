@@ -5,6 +5,7 @@ import de.proxysystem.commands.PingCommand;
 import de.proxysystem.commands.WhereAmICommand;
 import de.proxysystem.commands.admin.BroadcastCommand;
 import de.proxysystem.commands.admin.ProxyCommand;
+import de.proxysystem.commands.admin.UptimeCommand;
 import de.proxysystem.commands.staff.ClearChatCommand;
 import de.proxysystem.commands.staff.JoinCommand;
 import de.proxysystem.commands.staff.JumpCommand;
@@ -87,6 +88,7 @@ public class ProxySystem extends Plugin {
     ProxyServer.getInstance().getPluginManager().registerCommand(this, new ProxyCommand());
     ProxyServer.getInstance().getPluginManager().registerCommand(this, new JoinCommand());
     ProxyServer.getInstance().getPluginManager().registerCommand(this, new BroadcastCommand());
+    ProxyServer.getInstance().getPluginManager().registerCommand(this, new UptimeCommand());
 
     // register Listeners
     ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerJoinListener());
