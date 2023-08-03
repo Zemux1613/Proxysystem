@@ -24,3 +24,6 @@
 - 100% messages configurable
 - 99,9% general configurable
 - Auto broadcast messages
+
+## Requirements
+- SQL-Database
