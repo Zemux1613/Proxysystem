@@ -15,7 +15,8 @@ public enum GeneralConfig {
     DATABASE_USERNAME("database.username", "admin"),
     DISPLAY_NAME_PREFIXING("general.customPrefixes", "true"),
     GENERAL_ENABLE_HUB_COMMAND("general.hub.enableCustomCommand", "false"),
-    GENERAL_HUB_GROUP_NAME("general.hub.serverGroup", "Lobby");
+    GENERAL_HUB_GROUP_NAME("general.hub.serverGroup", "Lobby"),
+    BROADCAST_WITH_WHITESPACES("general.broadcastWithWhitespaces", "true");
 
     private String key;
     private String defaultValue;

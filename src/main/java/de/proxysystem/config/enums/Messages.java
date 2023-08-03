@@ -35,7 +35,9 @@ public enum Messages {
     PROXY("commands.proxy", "%prefix% Du bist momentan auf folgender Proxy:&c %address%&8."),
     JOIN("commands.join", "%prefix% Bitte Verwende /join <ServerName>"),
     UPTIME_USAGE("commands.uptime", "%prefix% Bitte verwende /uptime"),
-    UPTIME("commands.uptime", "%prefix% Das System ist seit %time% online&8.");
+    UPTIME("commands.uptime", "%prefix% Das System ist seit %time% online&8."),
+    BROADCAST_USAGE("commands.broadcast.usage", "%prefix% Bitte verwende /broadcast <Nachricht>"),
+    BROADCAST_CHAT_FORMAT("commands.broadcast.format", "%prefix% %message%");
 
     private final String key;
     private final String defaultValue;

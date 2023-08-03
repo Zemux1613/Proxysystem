@@ -1,4 +1,4 @@
-package de.proxysystem.commands.staff;
+package de.proxysystem.commands.admin;
 
 import de.proxysystem.ProxySystem;
 import de.proxysystem.config.enums.Messages;
