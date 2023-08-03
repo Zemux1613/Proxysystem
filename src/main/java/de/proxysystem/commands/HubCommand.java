@@ -24,8 +24,9 @@ public class HubCommand extends Command {
       final String hubServerGroup = ProxySystem.getInstance().getBasicFileConfiguration()
           .getSetting(GeneralConfig.GENERAL_HUB_GROUP_NAME).toLowerCase();
       if (serverName.toLowerCase().contains(hubServerGroup)) {
-        commandSender.sendMessage(ProxySystem.getInstance().getMessageConfiguration()
-            .getMessage(Messages.HUB_ALREADY_JOINED));
+        commandSender.sendMessage(TextComponent.fromLegacyText(
+            ProxySystem.getInstance().getMessageConfiguration()
+                .getMessage(Messages.HUB_ALREADY_JOINED)));
         return;
       }
       ProxyServer.getInstance().getServers().values().stream()
@@ -35,8 +36,8 @@ public class HubCommand extends Command {
                   ProxySystem.getInstance().getMessageConfiguration()
                       .getMessage(Messages.NOT_HUB_FOUND))));
     } else {
-      commandSender.sendMessage(
-          ProxySystem.getInstance().getMessageConfiguration().getMessage(Messages.NOT_A_PLAYER));
+      commandSender.sendMessage(TextComponent.fromLegacyText(
+          ProxySystem.getInstance().getMessageConfiguration().getMessage(Messages.NOT_A_PLAYER)));
     }
   }
 }

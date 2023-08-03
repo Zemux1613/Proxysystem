@@ -34,8 +34,8 @@ public class BroadcastCommand extends Command {
               .getMessage(Messages.BROADCAST_USAGE)));
     }
     final StringJoiner stringJoiner = new StringJoiner(" ");
-    for (int i = 0; i < args.length; i++) {
-      stringJoiner.add(args[i]);
+    for (String arg : args) {
+      stringJoiner.add(arg);
     }
     for (final ProxiedPlayer all : ProxyServer.getInstance().getPlayers()) {
       final boolean whiteSpaces = ProxySystem.getInstance().getBasicFileConfiguration()

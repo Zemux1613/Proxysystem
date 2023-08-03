@@ -3,6 +3,7 @@ package de.proxysystem;
 import de.proxysystem.commands.HubCommand;
 import de.proxysystem.commands.PingCommand;
 import de.proxysystem.commands.WhereAmICommand;
+import de.proxysystem.commands.admin.BroadcastCommand;
 import de.proxysystem.commands.admin.ProxyCommand;
 import de.proxysystem.commands.staff.ClearChatCommand;
 import de.proxysystem.commands.staff.JoinCommand;
@@ -19,6 +20,8 @@ import de.proxysystem.database.SqlConnector;
 import de.proxysystem.database.repositories.NameStorageRepository;
 import de.proxysystem.database.repositories.StaffMemberRepository;
 import de.proxysystem.listener.PlayerJoinListener;
+import de.proxysystem.tasks.AutoBroadcast;
+import de.proxysystem.tasks.TaskService;
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -39,12 +42,14 @@ public class ProxySystem extends Plugin {
   private SqlConnector sqlConnector;
   private NameStorageRepository nameStorageRepository;
   private StaffMemberRepository staffMemberRepository;
+  private TaskService taskService;
 
   @Override
   public void onEnable() {
     instance = this;
     basicFileConfiguration = new BasicFileConfiguration();
     messageConfiguration = new MessageConfiguration();
+    taskService = new TaskService();
 
     if (basicFileConfiguration.getSetting(GeneralConfig.DISPLAY_NAME_PREFIXING)
         .equals(Boolean.TRUE.toString())) {
@@ -54,12 +59,15 @@ public class ProxySystem extends Plugin {
     if (basicFileConfiguration.getSetting(GeneralConfig.AUTO_BROADCAST)
         .equals(Boolean.TRUE.toString())) {
       autoBroadcastConfiguration = new AutoBroadcastConfiguration();
+      taskService.registerTask(new AutoBroadcast());
     }
 
     sqlConnector = new SqlConnector(basicFileConfiguration);
 
     nameStorageRepository = new NameStorageRepository(sqlConnector);
     staffMemberRepository = new StaffMemberRepository(sqlConnector);
+
+    taskService.startAllTasks();
 
     ProxyServer.getInstance().getConsole().sendMessage(TextComponent.fromLegacyText(
         messageConfiguration.getMessage(Messages.PREFIX) + "Starting " + getDescription().getName()
@@ -78,6 +86,7 @@ public class ProxySystem extends Plugin {
     ProxyServer.getInstance().getPluginManager().registerCommand(this, new ClearChatCommand());
     ProxyServer.getInstance().getPluginManager().registerCommand(this, new ProxyCommand());
     ProxyServer.getInstance().getPluginManager().registerCommand(this, new JoinCommand());
+    ProxyServer.getInstance().getPluginManager().registerCommand(this, new BroadcastCommand());
 
     // register Listeners
     ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerJoinListener());

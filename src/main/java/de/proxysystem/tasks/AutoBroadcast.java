@@ -5,7 +5,6 @@ import de.proxysystem.config.AutoBroadcastConfiguration;
 import de.proxysystem.config.enums.GeneralConfig;
 import de.proxysystem.config.enums.Messages;
 import de.proxysystem.tasks.abstraction.RepeatableTask;
-import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
