@@ -1,6 +1,7 @@
 package de.proxysystem.config;
 
 import de.proxysystem.ProxySystem;
+import de.proxysystem.config.abstraction.AbstractConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -20,7 +21,7 @@ public class CustomPrefixesConfiguration extends AbstractConfiguration {
   }
 
   @Override
-  void init() {
+  protected void init() {
     try {
       Configuration configuration = super.getConfiguration();
 

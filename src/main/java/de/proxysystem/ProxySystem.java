@@ -9,6 +9,7 @@ import de.proxysystem.commands.staff.JoinCommand;
 import de.proxysystem.commands.staff.JumpCommand;
 import de.proxysystem.commands.staff.PullCommand;
 import de.proxysystem.commands.staff.TeamChatCommand;
+import de.proxysystem.config.AutoBroadcastConfiguration;
 import de.proxysystem.config.BasicFileConfiguration;
 import de.proxysystem.config.CustomPrefixesConfiguration;
 import de.proxysystem.config.MessageConfiguration;
@@ -22,6 +23,7 @@ import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Plugin;
+import org.checkerframework.checker.units.qual.A;
 
 @Getter
 public class ProxySystem extends Plugin {
@@ -33,6 +35,7 @@ public class ProxySystem extends Plugin {
   private BasicFileConfiguration basicFileConfiguration;
   private MessageConfiguration messageConfiguration;
   private CustomPrefixesConfiguration customPrefixesConfiguration;
+  private AutoBroadcastConfiguration autoBroadcastConfiguration;
   private SqlConnector sqlConnector;
   private NameStorageRepository nameStorageRepository;
   private StaffMemberRepository staffMemberRepository;
@@ -46,6 +49,11 @@ public class ProxySystem extends Plugin {
     if (basicFileConfiguration.getSetting(GeneralConfig.DISPLAY_NAME_PREFIXING)
         .equals(Boolean.TRUE.toString())) {
       customPrefixesConfiguration = new CustomPrefixesConfiguration();
+    }
+
+    if (basicFileConfiguration.getSetting(GeneralConfig.AUTO_BROADCAST)
+        .equals(Boolean.TRUE.toString())) {
+      autoBroadcastConfiguration = new AutoBroadcastConfiguration();
     }
 
     sqlConnector = new SqlConnector(basicFileConfiguration);

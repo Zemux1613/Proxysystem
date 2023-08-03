@@ -1,6 +1,7 @@
 package de.proxysystem.config;
 
 import de.proxysystem.ProxySystem;
+import de.proxysystem.config.abstraction.AbstractConfiguration;
 import de.proxysystem.config.enums.GeneralConfig;
 import de.proxysystem.config.enums.Messages;
 import net.md_5.bungee.api.ChatColor;

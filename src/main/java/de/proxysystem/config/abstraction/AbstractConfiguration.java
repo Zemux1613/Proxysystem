@@ -1,4 +1,4 @@
-package de.proxysystem.config;
+package de.proxysystem.config.abstraction;
 
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -27,7 +27,7 @@ public abstract class AbstractConfiguration {
     init();
   }
 
-  abstract void init();
+  protected abstract void init();
 
   protected void initValue(Configuration configuration, String key, String defaultValue) {
     if (configuration.get(key) == null) {

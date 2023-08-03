@@ -16,3 +16,4 @@
 
 ## Features
 - 100% messages configurable
+- 99,9% general configurable

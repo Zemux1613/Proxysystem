@@ -16,7 +16,9 @@ public enum GeneralConfig {
     DISPLAY_NAME_PREFIXING("general.customPrefixes", "true"),
     GENERAL_ENABLE_HUB_COMMAND("general.hub.enableCustomCommand", "false"),
     GENERAL_HUB_GROUP_NAME("general.hub.serverGroup", "Lobby"),
-    BROADCAST_WITH_WHITESPACES("general.broadcastWithWhitespaces", "true");
+    BROADCAST_WITH_WHITESPACES("broadcast.broadcastWithWhitespaces", "true"),
+    AUTO_BROADCAST("broadcast.autobroadcast", "false"),
+    AUTO_BROADCAST_DELAY("broadcast.autobroadcast.delay", "900");
 
     private String key;
     private String defaultValue;
