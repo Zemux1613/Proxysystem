@@ -4,11 +4,13 @@ import de.proxysystem.ProxySystem;
 import de.proxysystem.config.BasicFileConfiguration;
 import de.proxysystem.config.enums.GeneralConfig;
 import de.proxysystem.config.enums.Messages;
+import de.proxysystem.database.abstraction.IStatementResolver;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
@@ -94,6 +96,17 @@ public class SqlConnector {
         throw new RuntimeException(e);
       }
     });
+  }
+
+  public <T> Optional<T> query(IStatementResolver<T> resolver, final String qry,
+      Object... arguments) {
+    try {
+      final PreparedStatement preparedStatement = this.getPreparedStatement(qry, arguments);
+      final ResultSet resultSet = preparedStatement.executeQuery();
+      return Optional.ofNullable(!resultSet.next() ? null : resolver.resolve(resultSet));
+    } catch (SQLException e) {
+      return Optional.empty();
+    }
   }
 
 }

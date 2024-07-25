@@ -2,6 +2,7 @@ package de.proxysystem;
 
 import de.proxysystem.commands.HubCommand;
 import de.proxysystem.commands.PingCommand;
+import de.proxysystem.commands.PlaytimeCommand;
 import de.proxysystem.commands.WhereAmICommand;
 import de.proxysystem.commands.admin.BroadcastCommand;
 import de.proxysystem.commands.admin.ProxyCommand;
@@ -19,8 +20,10 @@ import de.proxysystem.config.enums.GeneralConfig;
 import de.proxysystem.config.enums.Messages;
 import de.proxysystem.database.SqlConnector;
 import de.proxysystem.database.repositories.NameStorageRepository;
+import de.proxysystem.database.repositories.PlaytimeRepository;
 import de.proxysystem.database.repositories.StaffMemberRepository;
 import de.proxysystem.listener.PlayerJoinListener;
+import de.proxysystem.listener.PlayerQuitListener;
 import de.proxysystem.tasks.AutoBroadcast;
 import de.proxysystem.tasks.TaskService;
 import lombok.Getter;
@@ -42,6 +45,7 @@ public class ProxySystem extends Plugin {
   private SqlConnector sqlConnector;
   private NameStorageRepository nameStorageRepository;
   private StaffMemberRepository staffMemberRepository;
+  private PlaytimeRepository playtimeRepository;
   private TaskService taskService;
 
   @Override
@@ -66,6 +70,7 @@ public class ProxySystem extends Plugin {
 
     nameStorageRepository = new NameStorageRepository(sqlConnector);
     staffMemberRepository = new StaffMemberRepository(sqlConnector);
+    playtimeRepository = new PlaytimeRepository();
 
     taskService.startAllTasks();
 
@@ -88,9 +93,11 @@ public class ProxySystem extends Plugin {
     ProxyServer.getInstance().getPluginManager().registerCommand(this, new JoinCommand());
     ProxyServer.getInstance().getPluginManager().registerCommand(this, new BroadcastCommand());
     ProxyServer.getInstance().getPluginManager().registerCommand(this, new UptimeCommand());
+    ProxyServer.getInstance().getPluginManager().registerCommand(this, new PlaytimeCommand());
 
     // register Listeners
     ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerJoinListener());
+    ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerQuitListener());
   }
 
   @Override

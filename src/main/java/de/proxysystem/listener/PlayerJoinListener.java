@@ -15,6 +15,12 @@ import net.md_5.bungee.event.EventHandler;
 public class PlayerJoinListener implements Listener {
 
   @EventHandler
+  public void handlePlaytime(PostLoginEvent event) {
+    ProxySystem.getInstance().getPlaytimeRepository()
+        .handleNetworkJoin(event.getPlayer().getUniqueId());
+  }
+
+  @EventHandler
   public void handlePrefixes(PostLoginEvent event) {
     final ProxiedPlayer player = event.getPlayer();
     if (ProxySystem.getInstance().getCustomPrefixesConfiguration() != null) {

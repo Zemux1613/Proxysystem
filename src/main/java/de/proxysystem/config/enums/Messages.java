@@ -47,7 +47,31 @@ public enum Messages {
   UPTIME_USAGE("commands.uptime", "%prefix% Bitte verwende /uptime"),
   UPTIME("commands.uptime", "%prefix% Das System ist seit %time% online&8."),
   BROADCAST_USAGE("commands.broadcast.usage", "%prefix% Bitte verwende /broadcast <Nachricht>"),
-  BROADCAST_CHAT_FORMAT("commands.broadcast.format", "%prefix% %message%");
+  BROADCAST_CHAT_FORMAT("commands.broadcast.format", "%prefix% %message%"),
+  PLAYTIME_USAGE("commands.playtime.usage",
+      "%prefix% &cBitte verwende /playtime [<day, week, month, all>]"),
+  PLAYTIME_USAGE_CONSOLE("commands.playtime.usageConsole",
+      "%prefix% &cBitte verwende /playtime <Name> [<day, week, month, all>]"),
+  PLAYTIME_SELF_ALL("commands.playtime.self.all",
+      "%prefix% &aDu bist bereits &e%time% &aauf unseren Netzwerk&8."),
+  PLAYTIME_SELF_DAILY("commands.playtime.self.day",
+      "%prefix% &aDu bist bereits &e%time% &aauf unseren Netzwerk heute gewesen&8."),
+  PLAYTIME_SELF_WEAKLY("commands.playtime.self.week",
+      "%prefix% &aDu bist bereits &e%time% &aauf unseren Netzwerk diese Woche gewesen&8."),
+  PLAYTIME_SELF_MONTHLY("commands.playtime.self.month",
+      "%prefix% &aDu bist bereits &e%time% &aauf unseren Netzwerk diesen Monat gewesen&8."),
+  PLAYTIME_OTHER_ALL("commands.playtime.other.all",
+      "%prefix% &e%player% &aist bereits &e%time% &aauf unseren Netzwerk&8."),
+  PLAYTIME_OTHER_DAILY("commands.playtime.other.day",
+      "%prefix% &e%player% &aist bereits &e%time% &aauf unseren Netzwerk heute gewesen&8."),
+  PLAYTIME_OTHER_WEAKLY("commands.playtime.other.week",
+      "%prefix% &e%player% &aist bereits &e%time% &aauf unseren Netzwerk diese Woche gewesen&8."),
+  PLAYTIME_OTHER_MONTHLY("commands.playtime.other.month",
+      "%prefix% &e%player% &aist bereits &e%time% &aauf unseren Netzwerk diesen Monat gewesen&8."),
+  PLAYTIME_TOP("commands.playtime.top", "%prefix% &7Top 10 der Onlinezeit&8:"),
+  PLAYTIME_TOP_LINE("commands.playtime.topLine", "§c%rank%§8. §e%name% §8- §c%time%"),
+  PLAYTIME_ERROR("commands.playtime.error",
+      "%prefix% &cEs ist ein Fehler aufgetreten. Bitte versuche es erneut.");
 
   private final String key;
   private final String defaultValue;
