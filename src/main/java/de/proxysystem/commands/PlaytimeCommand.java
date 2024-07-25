@@ -45,7 +45,7 @@ public class PlaytimeCommand extends Command {
       commandSender.sendMessage(TextComponent.fromLegacyText(
           ProxySystem.getInstance().getMessageConfiguration().getMessage(Messages.PLAYTIME_TOP)));
       for (final PlayerPlaytime playerPlaytime : topTenAllTime) {
-        if(playerPlaytime.getNameResult().isEmpty()) {
+        if (playerPlaytime.getNameResult().isEmpty()) {
           System.out.println("NameResult for " + rank + " rank is unknown.");
           continue;
         }
