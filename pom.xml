@@ -6,7 +6,7 @@
 
     <groupId>de.proxysystem</groupId>
     <artifactId>Proxysystem</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -18,18 +18,18 @@
         <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>
-            <version>1.19-R0.1-SNAPSHOT</version>
+            <version>1.20-R0.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.28</version>
+            <version>1.18.34</version>
         </dependency>
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
-            <version>3.1.0</version>
+            <version>3.1.8</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
