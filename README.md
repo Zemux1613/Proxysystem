@@ -18,6 +18,7 @@
 - /hub
 - /ping
 - /whereami
+- /playtime
 
 ## Features
 
