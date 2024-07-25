@@ -31,8 +31,9 @@ public class PullCommand extends Command {
     }
 
     String targetPlayer = args[0];
-    if(targetPlayer.equalsIgnoreCase("all")){
-      ProxyServer.getInstance().getPlayers().forEach(player -> pullPlayer((ProxiedPlayer) sender, player));
+    if (targetPlayer.equalsIgnoreCase("all")) {
+      ProxyServer.getInstance().getPlayers()
+          .forEach(player -> pullPlayer((ProxiedPlayer) sender, player));
       return;
     }
     final ProxiedPlayer target = ProxyServer.getInstance().getPlayer(targetPlayer);

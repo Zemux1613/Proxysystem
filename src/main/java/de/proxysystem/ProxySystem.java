@@ -27,7 +27,6 @@ import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Plugin;
-import org.checkerframework.checker.units.qual.A;
 
 @Getter
 public class ProxySystem extends Plugin {

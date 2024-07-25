@@ -1,7 +1,6 @@
 package de.proxysystem.config.enums;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 @AllArgsConstructor
@@ -16,7 +15,7 @@ public enum GeneralConfig {
     DISPLAY_NAME_PREFIXING("general.customPrefixes", "true"),
     GENERAL_ENABLE_HUB_COMMAND("general.hub.enableCustomCommand", "false"),
     GENERAL_HUB_GROUP_NAME("general.hub.serverGroup", "Lobby"),
-    BROADCAST_WITH_WHITESPACES("broadcast.broadcastWithWhitespaces", "true"),
+    BROADCAST_WITH_WHITESPACES("broadcast.withWhitespaces", "true"),
     AUTO_BROADCAST("broadcast.autobroadcast", "false"),
     AUTO_BROADCAST_DELAY("broadcast.autobroadcast.delay", "900");
 

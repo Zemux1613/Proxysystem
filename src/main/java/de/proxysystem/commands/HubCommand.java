@@ -3,13 +3,12 @@ package de.proxysystem.commands;
 import de.proxysystem.ProxySystem;
 import de.proxysystem.config.enums.GeneralConfig;
 import de.proxysystem.config.enums.Messages;
+import java.util.Comparator;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
-
-import java.util.Comparator;
 
 public class HubCommand extends Command {
 

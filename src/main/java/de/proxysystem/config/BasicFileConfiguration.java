@@ -3,15 +3,12 @@ package de.proxysystem.config;
 import de.proxysystem.ProxySystem;
 import de.proxysystem.config.abstraction.AbstractConfiguration;
 import de.proxysystem.config.enums.GeneralConfig;
-import de.proxysystem.config.enums.Messages;
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.config.Configuration;
-import net.md_5.bungee.config.ConfigurationProvider;
-import net.md_5.bungee.config.YamlConfiguration;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
+import net.md_5.bungee.config.Configuration;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
 
 public class BasicFileConfiguration extends AbstractConfiguration {
 

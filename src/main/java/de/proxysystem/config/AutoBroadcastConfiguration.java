@@ -43,7 +43,8 @@ public class AutoBroadcastConfiguration extends AbstractConfiguration {
           .getStringList("messages")
           .stream()
           .map(s -> ChatColor.translateAlternateColorCodes('&', s))
-          .map(s -> s.replace("%prefix%", ProxySystem.getInstance().getMessageConfiguration().getMessage(Messages.PREFIX)))
+          .map(s -> s.replace("%prefix%",
+              ProxySystem.getInstance().getMessageConfiguration().getMessage(Messages.PREFIX)))
           .forEach(messages::add);
     } catch (IOException e) {
       throw new RuntimeException(e);

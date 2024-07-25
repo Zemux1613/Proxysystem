@@ -1,12 +1,11 @@
 package de.proxysystem.config.abstraction;
 
+import java.io.File;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
-
-import java.io.File;
 
 @Getter
 public abstract class AbstractConfiguration {

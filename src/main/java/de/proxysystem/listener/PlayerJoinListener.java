@@ -5,7 +5,6 @@ import de.proxysystem.config.CustomPrefixesConfiguration;
 import de.proxysystem.config.enums.Messages;
 import de.proxysystem.database.modells.StaffMember;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Stream;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
