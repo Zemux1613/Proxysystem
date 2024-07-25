@@ -88,41 +88,41 @@ public class PlaytimeCommand extends Command {
     ProxySystem.getInstance().getNameStorageRepository().getNameResultByName(name)
         .ifPresent(nameResult -> {
           long playtime = -1;
-          String message = "";
-          switch (type.toLowerCase()) {
-            case "day":
+          String message = switch (type.toLowerCase()) {
+            case "day" -> {
               playtime = ProxySystem.getInstance().getPlaytimeRepository()
                   .getDailyPlaytime(nameResult.uuid());
-              message = (isSelf ? ProxySystem.getInstance().getMessageConfiguration()
+              yield (isSelf ? ProxySystem.getInstance().getMessageConfiguration()
                   .getMessage(Messages.PLAYTIME_SELF_DAILY)
                   : ProxySystem.getInstance().getMessageConfiguration()
                       .getMessage(Messages.PLAYTIME_OTHER_DAILY));
-              break;
-            case "week":
+            }
+            case "week" -> {
               playtime = ProxySystem.getInstance().getPlaytimeRepository()
                   .getWeeklyPlaytime(nameResult.uuid());
-              message = (isSelf ? ProxySystem.getInstance().getMessageConfiguration()
+              yield (isSelf ? ProxySystem.getInstance().getMessageConfiguration()
                   .getMessage(Messages.PLAYTIME_SELF_WEAKLY)
                   : ProxySystem.getInstance().getMessageConfiguration()
                       .getMessage(Messages.PLAYTIME_OTHER_WEAKLY));
-              break;
-            case "month":
+            }
+            case "month" -> {
               playtime = ProxySystem.getInstance().getPlaytimeRepository()
                   .getMonthlyPlaytime(nameResult.uuid());
-              message = (isSelf ? ProxySystem.getInstance().getMessageConfiguration()
+              yield (isSelf ? ProxySystem.getInstance().getMessageConfiguration()
                   .getMessage(Messages.PLAYTIME_SELF_MONTHLY)
                   : ProxySystem.getInstance().getMessageConfiguration()
                       .getMessage(Messages.PLAYTIME_OTHER_MONTHLY));
-              break;
-            case "all":
+            }
+            case "all" -> {
               playtime = ProxySystem.getInstance().getPlaytimeRepository()
                   .getPlaytime(nameResult.uuid());
-              message = (isSelf ? ProxySystem.getInstance().getMessageConfiguration()
+              yield (isSelf ? ProxySystem.getInstance().getMessageConfiguration()
                   .getMessage(Messages.PLAYTIME_SELF_ALL)
                   : ProxySystem.getInstance().getMessageConfiguration()
                       .getMessage(Messages.PLAYTIME_OTHER_ALL));
-              break;
-          }
+            }
+            default -> "";
+          };
 
           if (playtime != -1) {
             commandSender.sendMessage(
